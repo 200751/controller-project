@@ -1,0 +1,161 @@
+:root{
+    --primary-color: rgb(17, 226, 226);
+    --background-color: rgb(255, 255, 255);
+    --gradient-color1: rgb(60, 247, 238);
+    --gradient-color2: rgb(12, 78, 165);
+    --background-logobox: rgb(32, 32, 32);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#container{
+    background: linear-gradient(135deg, var(--gradient-color1 ), var(--gradient-color2));
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#controller{
+    background-color: var(--background-color);
+    height: 50vh;
+    width: 40%;
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#logobox{
+    height: 10vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#controller_logobox{
+    background-color: var(--background-logobox);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 53%;
+}
+#logoboxright{
+    width: 10%;
+    height: 10vh;
+    border-style: solid;
+    border-width: 0 0 10vh 10vh;
+    border-color: transparent transparent transparent var(--background-logobox);
+}
+#logoboxleft{
+    width: 10%;
+    height: 10vh;
+    border-style: solid;
+    border-width: 0 10vh 10vh 0;
+    border-color: transparent var(--background-logobox) transparent transparent;
+}
+#antennas{
+    width: 35%;
+    display: flex;
+    justify-content: space-around;
+}
+.antenna{
+    height: 20vh;
+    width: 7%;
+    background-color: var(--background-logobox);
+    box-shadow: inset 0px -11px 8px -10px black;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+i{
+    color: rgb(182, 182, 182);
+}
+#controlbox{
+    /* background-color: rgb(250, 4, 168); */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30vh;
+}
+#controlright{
+    /* background-color: aqua; */
+    width: 20%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#controlleft{
+    /* background-color: yellow; */
+    width: 20%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#joystickbox{
+    background-color: rgb(54, 50, 50);
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#joystick{
+    background-color: rgb(17, 17, 17);
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+}
+#sliderbox{
+    background-color: lightgray;
+    border-radius: 3rem;
+    width: 5vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+}
+#slider{
+    background-color: rgb(17, 17, 17);
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+}
+#micbox{
+    background-color: lightgray;
+    width: 10vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+.mic_lines{
+    background-color: rgb(17, 17, 17);
+    border-radius: 1rem;
+    width: 3%;
+    height: 8vh;
+}
+#screenbox{
+    background-color: black;
+    width: 22vw;
+    height: 22vh;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#screen{
+    background-color: rgb(14, 73, 6);
+    width: 21vw;
+    height: 20vh;
+    border-radius: 20px;
+}

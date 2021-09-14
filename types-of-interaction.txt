@@ -1,0 +1,7 @@
+slider, joystick, button, voice
+
+Onderwerp: Drone controller
+ Slider: Speed
+ Joystick: Movement
+ Button: On/off
+ Voice interaction: Color Change or Self destruct
