@@ -6,25 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controller</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div id="container">
         <div id="antennas">
-            <div class="antenna"></div>
-            <div class="antenna"></div>
+            <div class="antenna">
+                <div class="antenna_top"></div>
+            </div>
+            <div class="antenna">
+                <div class="antenna_top"></div>
+            </div>
         </div>
         <div id="controller">
             <div id="logobox">
                 <div id="logoboxleft"></div>
                 <div id="controller_logobox">
-                    <a href=""><div class="powerbutton"><i class="fas fa-power-off fa-3x"></i></div></a>
+                    <div class="powerbutton" id="powerbutton"><i class="fas fa-power-off fa-2x"></i></div>
                 </div>
                 <div id="logoboxright"></div>
             </div>
             <div id="controlbox">
                 <div id="controlleft">
                     <div id="sliderbox">
-                        <div id="slider"></div>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="mySlider">
                     </div>
                 </div>
                 <div id="screenbox">
@@ -32,7 +37,7 @@
                 </div>
                 <div id="controlright">
                     <div id="joystickbox">
-                        <div id="joystick"></div>
+                        <div id="joystick" style="width:100%;height:100%;"></div>
                     </div>
                 </div>
             </div>
@@ -44,7 +49,40 @@
                 <div class="mic_lines"></div>
             </div>
         </div>
+        <a href="/drone.html" target="_blank">Drone</a>
     </div>
+    <script src="assets/js/script.js"></script>
     <script src="https://kit.fontawesome.com/ed8e956d8b.js" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="assets/js/joy.js"></script>
+
+    <script>
+        var joy = new JoyStick('joystick');
+        var slider = document.getElementById("mySlider");
+
+        setInterval( sendDirection, 200);
+
+        var socket = io();
+  
+        document.addEventListener('keypress', function(e) {
+          var code = e.code;
+          var key = e.key;
+  
+          socket.emit('press', key);
+        });
+
+        let joystick = document.getElementById("joystick");
+
+        joystick.addEventListener('touchmove', function(e) {
+            var key = joy.getDir();
+        });
+
+        function sendDirection(){
+            // console.log(joy.GetDir());
+            socket.emit('touchJoy', joy.GetDir());
+            socket.emit('sliderValue', slider.value / 10);
+            // console.log(slider.value);
+        };  
+      </script>
 </body>
 </html>

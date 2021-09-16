@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone</title>
+    <link rel="stylesheet" href="assets/css/drone.css">
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div id="container">
+        <div id="dronecontainer">
+            <div class="wings_rotors">
+                <div class="rotors">
+                    <div class="rotor tl"></div>
+                    <div class="rotor bl"></div>
+                </div>
+                <div class="dronewings">
+                    <div class="dronewing left"></div>
+                    <div class="dronewing left"></div>
+                </div>
+            </div>
+            <div id="dronebody">
+                <div id="power"></div>
+            </div>
+            <div class="wings_rotors">
+                <div class="dronewings">
+                    <div class="dronewing right"></div>
+                    <div class="dronewing right"></div>
+                </div>
+                <div class="rotors">
+                    <div class="rotor tr"></div>
+                    <div class="rotor br"></div>
+                </div>
+            </div>
+        </div>
+        <div id="button_pressed" style="font-size:40px;font-family: Arial, Helvetica, sans-serif;"></div>
+        <div id="position"></div>
+    </div>
+    <!-- <script src="assets/js/script.js"></script> -->
+    <script src="https://kit.fontawesome.com/ed8e956d8b.js" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+        var socket = io();
+        var speed = 0;
+  
+        socket.on('sendFromServerKeyPressed', function(msg) {
+          var item = document.getElementById('button_pressed');
+  
+          item.innerHTML = msg;
+        });
+
+        socket.on('joystickPosition', function(position){
+            var positionDiv = document.getElementById('position');
+            var droneContainer = document.getElementById('dronecontainer');
+            var top;
+            var left;
+
+            if(droneContainer.style.top == "" || droneContainer.style.left == ""){
+                droneContainer.style.top = 0;
+                droneContainer.style.left = 0;
+            }
+
+            socket.on('InputRangeValue', function(slider){
+                speed = slider;
+                console.log(slider);
+            });
+
+            switch(position){
+                case "N":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)-speed)+"px";
+                    break;
+                case "NE":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)-speed)+"px";
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)+speed)+"px";
+                    break;
+                case "E":
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)+speed)+"px";
+                    break;
+                case "SE":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)+speed)+"px";
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)+speed)+"px";
+                    break;
+                case "S":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)+speed)+"px";
+                    break;
+                case "SW":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)+speed)+"px";
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)-speed)+"px";
+                    break;
+                case "W":
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)-speed)+"px";
+                    break;
+                case "NW":
+                    droneContainer.style.top = (parseInt(droneContainer.style.top)-speed)+"px";
+                    droneContainer.style.left = (parseInt(droneContainer.style.left)-speed)+"px";
+                    break;
+            }
+        });
+      </script>
+</body>
+</html>
