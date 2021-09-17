@@ -3,6 +3,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
+const device = "OFF";
 
 app.use(express.static('public'));
 
@@ -11,8 +12,10 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  socket.on('press', msg => {
-    io.emit('sendFromServerKeyPressed', 'DIT KNOPJE IS INGEDRUKT: '+msg);
+  io.emit('deviceStatus', device);
+  socket.on('peripheralsStatus', msg => {
+    device = msg;
+    io.emit('deviceStatus', device);
   });
 
   socket.on('touchJoy', position => {

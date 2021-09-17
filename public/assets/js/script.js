@@ -6,13 +6,13 @@ function powerOnOff(e){
    for (i = 0; i < antenna.length; i++){
        antenna[i].classList.toggle("antenna_active");
    }
-//    checkPower();
+   checkPower();
 };
 
-// function checkPower(){
-//     if (antenna[i].classList.contains("antenna_active")){
-//         console.log("Power On")
-//     } else {
-//         console.log("Power Off")
-//     }
-// };
+function checkPower(){
+    if (antenna[i].classList.contains("antenna_active")){
+        socket.emit('peripheralsStatus', "ON");
+    } else {
+        console.log("Power Off")
+    }
+};
