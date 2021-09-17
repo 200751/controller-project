@@ -26,9 +26,9 @@ io.on('connection', (socket) => {
     io.emit('InputRangeValue', slider);
   });
 
-  socket.on('powerButtonPress', powerButtonStatus => {
-    io.emit('powerButtonPressed', powerButtonStatus);
-  });
+  // socket.on('powerButtonPress', powerButtonStatus => {
+  //   io.emit('powerButtonPressed', powerButtonStatus);
+  // });
 });
 
 http.listen(port, () => {
