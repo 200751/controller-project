@@ -58,18 +58,23 @@
 
     <script>
         var joy = new JoyStick('joystick');
-        var slider = document.getElementById("mySlider");
+        var slider = document.getElementById('mySlider');
+        var screen = document.getElementById('screen');
+
+        // var backgroundColor = getComputedStyle( document.getElementById(antenna), "background-color");
+        // console.log(backgroundColor);
+
 
         setInterval( sendDirection, 200);
 
         var socket = io();
   
-        document.addEventListener('keypress', function(e) {
-          var code = e.code;
-          var key = e.key;
+        // document.addEventListener('keypress', function(e) {
+        //   var code = e.code;
+        //   var key = e.key;
   
-          socket.emit('press', key);
-        });
+        //   socket.emit('press', key);
+        // });
 
         let joystick = document.getElementById("joystick");
 
@@ -77,12 +82,17 @@
             var key = joy.getDir();
         });
 
+        // powerbutton.addEventListener('click', function(e){
+        //     var powerStatus = antenna.style.background;
+
+        //     socket.emit('powerButtonPressed', powerStatus);
+        // });
+
         function sendDirection(){
-            // console.log(joy.GetDir());
             socket.emit('touchJoy', joy.GetDir());
-            socket.emit('sliderValue', slider.value / 10);
-            // console.log(slider.value);
-        };  
+            socket.emit('sliderValue', slider.value / 5);
+            screen.innerHTML = "Speed: " + slider.value + " px/s";
+        };
       </script>
 </body>
 </html>

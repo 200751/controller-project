@@ -18,8 +18,13 @@ io.on('connection', (socket) => {
   socket.on('touchJoy', position => {
     io.emit('joystickPosition', position);
   });
+
   socket.on('sliderValue', slider => {
     io.emit('InputRangeValue', slider);
+  });
+
+  socket.on('powerButtonPress', powerButtonStatus => {
+    io.emit('powerButtonPressed', powerButtonStatus);
   });
 });
 

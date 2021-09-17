@@ -52,6 +52,10 @@
           item.innerHTML = msg;
         });
 
+        socket.on('powerButtonPress', function(powerButtonStatus) {
+            console.log(powerButtonStatus);
+        });
+
         socket.on('joystickPosition', function(position){
             var positionDiv = document.getElementById('position');
             var droneContainer = document.getElementById('dronecontainer');
